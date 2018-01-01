@@ -42,18 +42,18 @@
     // Download the data
     myConnector.getData = function(table, doneCallback) {
         $.getJSON("https://api.census.gov/data/timeseries/eits/vip?get=data_type_code,time_slot_id,category_code,cell_value,seasonally_adj&time=from+2002", function(resp) {
-            var feat = resp.features,
-                tableData = [];
+            // var feat = resp.features,
+            var tableData = [];
 
             // Iterate over the JSON object
-            for (var i = 0, len = feat.length; i < len; i++) {
+            for (var i = 0, len = resp.length; i < len; i++) {
                 tableData.push({
-					"data_type_code": feat[i].data_type_code,
-					"time_slot_id": feat[i].time_slot_id,
-					"category_code": feat[i].category_code,
-					"cell_value": feat[i].cell_value,
-					"seasonally_adj": feat[i].seasonally_adj,
-					"time": feat[i].time
+					"data_type_code": resp[i].data_type_code,
+					"time_slot_id": resp[i].time_slot_id,
+					"category_code": resp[i].category_code,
+					"cell_value": resp[i].cell_value,
+					"seasonally_adj": resp[i].seasonally_adj,
+					"time": resp[i].time
                 });
             }
 
